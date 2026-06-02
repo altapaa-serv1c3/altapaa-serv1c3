@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTAPAA SERV1C3</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:#222}
+header{background:linear-gradient(135deg,#111,#444);color:#fff;padding:60px 20px;text-align:center}
+.logo{width:100px;height:100px;border-radius:50%;background:#25D366;color:#fff;
+display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:bold}
+section{max-width:1100px;margin:auto;padding:40px 20px}
+h2{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.price{font-weight:bold;color:#25D366}
+.gallery img{width:100%;border-radius:12px}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+button{width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:8px}
+footer{background:#111;color:#fff;text-align:center;padding:20px}
+.badge{background:#25D366;color:#fff;padding:8px 12px;border-radius:20px;display:inline-block}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">AS</div>
+<h1>ALTAPAA SERV1C3</h1>
+<p>Servis HP, Laptop, Software & Hardware</p>
+<p class="badge" id="antrian">Nomor Antrean Hari Ini: 001</p>
+</header>
+
+<section>
+<h2>Katalog Harga</h2>
+<div class="grid">
+<div class="card"><h3>Software HP</h3><p class="price">Mulai Rp50.000</p></div>
+<div class="card"><h3>Hardware HP</h3><p class="price">Mulai Rp75.000</p></div>
+<div class="card"><h3>Software PC/Laptop</h3><p class="price">Mulai Rp100.000</p></div>
+<div class="card"><h3>Hardware PC/Laptop</h3><p class="price">Mulai Rp150.000</p></div>
+</div>
+</section>
+
+<section>
+<h2>Galeri</h2>
+<div class="grid gallery">
+<div class="card">📱 Hasil Servis HP</div>
+<div class="card">💻 Hasil Servis Laptop</div>
+<div class="card">🛠️ Upgrade & Perbaikan</div>
+</div>
+</section>
+
+<section>
+<h2>Pesan Sekarang</h2>
+<input type="text" id="nama" placeholder="Nama Pelanggan">
+<select id="layanan">
+<option>Software HP</option>
+<option>Hardware HP</option>
+<option>Software PC/Laptop</option>
+<option>Hardware PC/Laptop</option>
+</select>
+<textarea id="ket" placeholder="Jelaskan kebutuhan Anda"></textarea>
+<button onclick="kirim()">Kirim ke WhatsApp</button>
+</section>
+
+<footer>
+089507297124 | ALTAPAA SERV1C3
+</footer>
+
+<script>
+let nomor = localStorage.getItem("antrian") || 1;
+document.getElementById("antrian").innerText =
+"Nomor Antrean Hari Ini: " + String(nomor).padStart(3,'0');
+
+function kirim(){
+ let nama=document.getElementById('nama').value;
+ let layanan=document.getElementById('layanan').value;
+ let ket=document.getElementById('ket').value;
+
+ let pesan=`Halo ALTAPAA SERV1C3
+Nomor Antrean: ${String(nomor).padStart(3,'0')}
+Nama: ${nama}
+Layanan: ${layanan}
+Keterangan: ${ket}`;
+
+ localStorage.setItem("antrian", Number(nomor)+1);
+
+ window.open("https://wa.me/6289507297124?text="+encodeURIComponent(pesan));
+}
+</script>
+
+</body>
+</html>
